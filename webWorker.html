@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Web Worker</title>
+    </head>
+    <body>
+
+        <div id="worker">
+            Carregando soma ...
+        </div>
+
+        <script>
+            
+            var webWorker = new Worker("webWorker.js");
+
+            if(window.Worker){
+
+                webWorker.onmessage = function(e){
+                    console.log(e.data);
+                    document.getElementById("worker").innerHTML = e.data;
+                }
+
+                webWorker.postMessage("");
+
+                console.log("The Web Worker works fine");
+            } else {
+                console.log("The browser don't supports");
+            }
+        </script>
+    </body>
+</html>
